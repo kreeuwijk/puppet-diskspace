@@ -34,7 +34,7 @@ end
 if supported_os.include? kernel
   mounts       = Facter::Util::Resolution.exec(df)
   mounts_array = mounts.split(/[\r\n]+/)
-  mounts_array.select! { |n| n !~ /(varlibdocker|containerd)/ }
+  mounts_array.select! { |n| n !~ /(varlibdocker|varlibkubelet|containerd|)/ }
   mounts_array.each do |line|
     m = /#{pattern}/.match(line)
     next unless m
